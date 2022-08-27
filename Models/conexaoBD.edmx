@@ -1,0 +1,500 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BDAlmoxarifadoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="idArea" />
+          </Key>
+          <Property Name="idArea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="areaDescricao" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Colaborador">
+          <Key>
+            <PropertyRef Name="idColaborador" />
+          </Key>
+          <Property Name="idColaborador" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomeColaborador" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="cargoColaborador" Type="varchar" MaxLength="20" />
+          <Property Name="idArea" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Entrada">
+          <Key>
+            <PropertyRef Name="idEntrada" />
+          </Key>
+          <Property Name="idEntrada" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dataEntrada" Type="date" Nullable="false" />
+          <Property Name="Fornecedor" Type="varchar" MaxLength="40" />
+          <Property Name="Observacao" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="EntradaProduto">
+          <Key>
+            <PropertyRef Name="idEntrada" />
+            <PropertyRef Name="idProduto" />
+          </Key>
+          <Property Name="idEntrada" Type="int" Nullable="false" />
+          <Property Name="idProduto" Type="int" Nullable="false" />
+          <Property Name="quantidade" Type="int" Nullable="false" />
+          <Property Name="valorUnitario" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="preco" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Produto">
+          <Key>
+            <PropertyRef Name="idProduto" />
+          </Key>
+          <Property Name="idProduto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descricaoProduto" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="produtoMinimo" Type="int" Nullable="false" />
+          <Property Name="produtoMaximo" Type="int" Nullable="false" />
+          <Property Name="produtoEstoque" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Saida">
+          <Key>
+            <PropertyRef Name="idSaida" />
+          </Key>
+          <Property Name="idSaida" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dataSaida" Type="date" Nullable="false" />
+          <Property Name="observacaoSaida" Type="varchar" MaxLength="100" />
+          <Property Name="idColaborador" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SaidaProduto">
+          <Key>
+            <PropertyRef Name="idSaida" />
+            <PropertyRef Name="idProduto" />
+          </Key>
+          <Property Name="idSaida" Type="int" Nullable="false" />
+          <Property Name="idProduto" Type="int" Nullable="false" />
+          <Property Name="quantidade" Type="int" Nullable="false" />
+          <Property Name="valorUnitario" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="preco" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Colaborador_Area">
+          <End Role="Area" Type="Self.Area" Multiplicity="1" />
+          <End Role="Colaborador" Type="Self.Colaborador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="idArea" />
+            </Principal>
+            <Dependent Role="Colaborador">
+              <PropertyRef Name="idArea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntradaProduto_Entrada">
+          <End Role="Entrada" Type="Self.Entrada" Multiplicity="1" />
+          <End Role="EntradaProduto" Type="Self.EntradaProduto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entrada">
+              <PropertyRef Name="idEntrada" />
+            </Principal>
+            <Dependent Role="EntradaProduto">
+              <PropertyRef Name="idEntrada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntradaProduto_Produto">
+          <End Role="Produto" Type="Self.Produto" Multiplicity="1" />
+          <End Role="EntradaProduto" Type="Self.EntradaProduto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produto">
+              <PropertyRef Name="idProduto" />
+            </Principal>
+            <Dependent Role="EntradaProduto">
+              <PropertyRef Name="idProduto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Saida_Colaborador">
+          <End Role="Colaborador" Type="Self.Colaborador" Multiplicity="1" />
+          <End Role="Saida" Type="Self.Saida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colaborador">
+              <PropertyRef Name="idColaborador" />
+            </Principal>
+            <Dependent Role="Saida">
+              <PropertyRef Name="idColaborador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaidaProduto_Produto">
+          <End Role="Produto" Type="Self.Produto" Multiplicity="1" />
+          <End Role="SaidaProduto" Type="Self.SaidaProduto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produto">
+              <PropertyRef Name="idProduto" />
+            </Principal>
+            <Dependent Role="SaidaProduto">
+              <PropertyRef Name="idProduto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaidaProduto_Saida">
+          <End Role="Saida" Type="Self.Saida" Multiplicity="1" />
+          <End Role="SaidaProduto" Type="Self.SaidaProduto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Saida">
+              <PropertyRef Name="idSaida" />
+            </Principal>
+            <Dependent Role="SaidaProduto">
+              <PropertyRef Name="idSaida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BDAlmoxarifadoModelStoreContainer">
+          <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Colaborador" EntityType="Self.Colaborador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Entrada" EntityType="Self.Entrada" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EntradaProduto" EntityType="Self.EntradaProduto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Produto" EntityType="Self.Produto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Saida" EntityType="Self.Saida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SaidaProduto" EntityType="Self.SaidaProduto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Colaborador_Area" Association="Self.FK_Colaborador_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Colaborador" EntitySet="Colaborador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntradaProduto_Entrada" Association="Self.FK_EntradaProduto_Entrada">
+            <End Role="Entrada" EntitySet="Entrada" />
+            <End Role="EntradaProduto" EntitySet="EntradaProduto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntradaProduto_Produto" Association="Self.FK_EntradaProduto_Produto">
+            <End Role="Produto" EntitySet="Produto" />
+            <End Role="EntradaProduto" EntitySet="EntradaProduto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Saida_Colaborador" Association="Self.FK_Saida_Colaborador">
+            <End Role="Colaborador" EntitySet="Colaborador" />
+            <End Role="Saida" EntitySet="Saida" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaidaProduto_Produto" Association="Self.FK_SaidaProduto_Produto">
+            <End Role="Produto" EntitySet="Produto" />
+            <End Role="SaidaProduto" EntitySet="SaidaProduto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaidaProduto_Saida" Association="Self.FK_SaidaProduto_Saida">
+            <End Role="Saida" EntitySet="Saida" />
+            <End Role="SaidaProduto" EntitySet="SaidaProduto" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BDAlmoxarifadoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="idArea" />
+          </Key>
+          <Property Name="idArea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="areaDescricao" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Colaborador" Relationship="Self.FK_Colaborador_Area" FromRole="Area" ToRole="Colaborador" />
+        </EntityType>
+        <EntityType Name="Colaborador">
+          <Key>
+            <PropertyRef Name="idColaborador" />
+          </Key>
+          <Property Name="idColaborador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomeColaborador" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cargoColaborador" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="idArea" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Area" Relationship="Self.FK_Colaborador_Area" FromRole="Colaborador" ToRole="Area" />
+          <NavigationProperty Name="Saida" Relationship="Self.FK_Saida_Colaborador" FromRole="Colaborador" ToRole="Saida" />
+        </EntityType>
+        <EntityType Name="Entrada">
+          <Key>
+            <PropertyRef Name="idEntrada" />
+          </Key>
+          <Property Name="idEntrada" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dataEntrada" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fornecedor" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Observacao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EntradaProduto" Relationship="Self.FK_EntradaProduto_Entrada" FromRole="Entrada" ToRole="EntradaProduto" />
+        </EntityType>
+        <EntityType Name="EntradaProduto">
+          <Key>
+            <PropertyRef Name="idEntrada" />
+            <PropertyRef Name="idProduto" />
+          </Key>
+          <Property Name="idEntrada" Type="Int32" Nullable="false" />
+          <Property Name="idProduto" Type="Int32" Nullable="false" />
+          <Property Name="quantidade" Type="Int32" Nullable="false" />
+          <Property Name="valorUnitario" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="preco" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Entrada" Relationship="Self.FK_EntradaProduto_Entrada" FromRole="EntradaProduto" ToRole="Entrada" />
+          <NavigationProperty Name="Produto" Relationship="Self.FK_EntradaProduto_Produto" FromRole="EntradaProduto" ToRole="Produto" />
+        </EntityType>
+        <EntityType Name="Produto">
+          <Key>
+            <PropertyRef Name="idProduto" />
+          </Key>
+          <Property Name="idProduto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descricaoProduto" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="produtoMinimo" Type="Int32" Nullable="false" />
+          <Property Name="produtoMaximo" Type="Int32" Nullable="false" />
+          <Property Name="produtoEstoque" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EntradaProduto" Relationship="Self.FK_EntradaProduto_Produto" FromRole="Produto" ToRole="EntradaProduto" />
+          <NavigationProperty Name="SaidaProduto" Relationship="Self.FK_SaidaProduto_Produto" FromRole="Produto" ToRole="SaidaProduto" />
+        </EntityType>
+        <EntityType Name="Saida">
+          <Key>
+            <PropertyRef Name="idSaida" />
+          </Key>
+          <Property Name="idSaida" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dataSaida" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="observacaoSaida" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="idColaborador" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Colaborador" Relationship="Self.FK_Saida_Colaborador" FromRole="Saida" ToRole="Colaborador" />
+          <NavigationProperty Name="SaidaProduto" Relationship="Self.FK_SaidaProduto_Saida" FromRole="Saida" ToRole="SaidaProduto" />
+        </EntityType>
+        <EntityType Name="SaidaProduto">
+          <Key>
+            <PropertyRef Name="idSaida" />
+            <PropertyRef Name="idProduto" />
+          </Key>
+          <Property Name="idSaida" Type="Int32" Nullable="false" />
+          <Property Name="idProduto" Type="Int32" Nullable="false" />
+          <Property Name="quantidade" Type="Int32" Nullable="false" />
+          <Property Name="valorUnitario" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="preco" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Produto" Relationship="Self.FK_SaidaProduto_Produto" FromRole="SaidaProduto" ToRole="Produto" />
+          <NavigationProperty Name="Saida" Relationship="Self.FK_SaidaProduto_Saida" FromRole="SaidaProduto" ToRole="Saida" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Colaborador_Area">
+          <End Role="Area" Type="Self.Area" Multiplicity="1" />
+          <End Role="Colaborador" Type="Self.Colaborador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="idArea" />
+            </Principal>
+            <Dependent Role="Colaborador">
+              <PropertyRef Name="idArea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Saida_Colaborador">
+          <End Role="Colaborador" Type="Self.Colaborador" Multiplicity="1" />
+          <End Role="Saida" Type="Self.Saida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colaborador">
+              <PropertyRef Name="idColaborador" />
+            </Principal>
+            <Dependent Role="Saida">
+              <PropertyRef Name="idColaborador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntradaProduto_Entrada">
+          <End Role="Entrada" Type="Self.Entrada" Multiplicity="1" />
+          <End Role="EntradaProduto" Type="Self.EntradaProduto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entrada">
+              <PropertyRef Name="idEntrada" />
+            </Principal>
+            <Dependent Role="EntradaProduto">
+              <PropertyRef Name="idEntrada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntradaProduto_Produto">
+          <End Role="Produto" Type="Self.Produto" Multiplicity="1" />
+          <End Role="EntradaProduto" Type="Self.EntradaProduto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produto">
+              <PropertyRef Name="idProduto" />
+            </Principal>
+            <Dependent Role="EntradaProduto">
+              <PropertyRef Name="idProduto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaidaProduto_Produto">
+          <End Role="Produto" Type="Self.Produto" Multiplicity="1" />
+          <End Role="SaidaProduto" Type="Self.SaidaProduto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produto">
+              <PropertyRef Name="idProduto" />
+            </Principal>
+            <Dependent Role="SaidaProduto">
+              <PropertyRef Name="idProduto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaidaProduto_Saida">
+          <End Role="Saida" Type="Self.Saida" Multiplicity="1" />
+          <End Role="SaidaProduto" Type="Self.SaidaProduto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Saida">
+              <PropertyRef Name="idSaida" />
+            </Principal>
+            <Dependent Role="SaidaProduto">
+              <PropertyRef Name="idSaida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BDAlmoxarifadoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Area" EntityType="Self.Area" />
+          <EntitySet Name="Colaborador" EntityType="Self.Colaborador" />
+          <EntitySet Name="Entrada" EntityType="Self.Entrada" />
+          <EntitySet Name="EntradaProduto" EntityType="Self.EntradaProduto" />
+          <EntitySet Name="Produto" EntityType="Self.Produto" />
+          <EntitySet Name="Saida" EntityType="Self.Saida" />
+          <EntitySet Name="SaidaProduto" EntityType="Self.SaidaProduto" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_Colaborador_Area" Association="Self.FK_Colaborador_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Colaborador" EntitySet="Colaborador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Saida_Colaborador" Association="Self.FK_Saida_Colaborador">
+            <End Role="Colaborador" EntitySet="Colaborador" />
+            <End Role="Saida" EntitySet="Saida" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntradaProduto_Entrada" Association="Self.FK_EntradaProduto_Entrada">
+            <End Role="Entrada" EntitySet="Entrada" />
+            <End Role="EntradaProduto" EntitySet="EntradaProduto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntradaProduto_Produto" Association="Self.FK_EntradaProduto_Produto">
+            <End Role="Produto" EntitySet="Produto" />
+            <End Role="EntradaProduto" EntitySet="EntradaProduto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaidaProduto_Produto" Association="Self.FK_SaidaProduto_Produto">
+            <End Role="Produto" EntitySet="Produto" />
+            <End Role="SaidaProduto" EntitySet="SaidaProduto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaidaProduto_Saida" Association="Self.FK_SaidaProduto_Saida">
+            <End Role="Saida" EntitySet="Saida" />
+            <End Role="SaidaProduto" EntitySet="SaidaProduto" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BDAlmoxarifadoModelStoreContainer" CdmEntityContainer="BDAlmoxarifadoEntities">
+          <EntitySetMapping Name="Area">
+            <EntityTypeMapping TypeName="BDAlmoxarifadoModel.Area">
+              <MappingFragment StoreEntitySet="Area">
+                <ScalarProperty Name="idArea" ColumnName="idArea" />
+                <ScalarProperty Name="areaDescricao" ColumnName="areaDescricao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Colaborador">
+            <EntityTypeMapping TypeName="BDAlmoxarifadoModel.Colaborador">
+              <MappingFragment StoreEntitySet="Colaborador">
+                <ScalarProperty Name="idColaborador" ColumnName="idColaborador" />
+                <ScalarProperty Name="nomeColaborador" ColumnName="nomeColaborador" />
+                <ScalarProperty Name="cargoColaborador" ColumnName="cargoColaborador" />
+                <ScalarProperty Name="idArea" ColumnName="idArea" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Entrada">
+            <EntityTypeMapping TypeName="BDAlmoxarifadoModel.Entrada">
+              <MappingFragment StoreEntitySet="Entrada">
+                <ScalarProperty Name="idEntrada" ColumnName="idEntrada" />
+                <ScalarProperty Name="dataEntrada" ColumnName="dataEntrada" />
+                <ScalarProperty Name="Fornecedor" ColumnName="Fornecedor" />
+                <ScalarProperty Name="Observacao" ColumnName="Observacao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EntradaProduto">
+            <EntityTypeMapping TypeName="BDAlmoxarifadoModel.EntradaProduto">
+              <MappingFragment StoreEntitySet="EntradaProduto">
+                <ScalarProperty Name="idEntrada" ColumnName="idEntrada" />
+                <ScalarProperty Name="idProduto" ColumnName="idProduto" />
+                <ScalarProperty Name="quantidade" ColumnName="quantidade" />
+                <ScalarProperty Name="valorUnitario" ColumnName="valorUnitario" />
+                <ScalarProperty Name="preco" ColumnName="preco" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Produto">
+            <EntityTypeMapping TypeName="BDAlmoxarifadoModel.Produto">
+              <MappingFragment StoreEntitySet="Produto">
+                <ScalarProperty Name="idProduto" ColumnName="idProduto" />
+                <ScalarProperty Name="descricaoProduto" ColumnName="descricaoProduto" />
+                <ScalarProperty Name="produtoMinimo" ColumnName="produtoMinimo" />
+                <ScalarProperty Name="produtoMaximo" ColumnName="produtoMaximo" />
+                <ScalarProperty Name="produtoEstoque" ColumnName="produtoEstoque" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Saida">
+            <EntityTypeMapping TypeName="BDAlmoxarifadoModel.Saida">
+              <MappingFragment StoreEntitySet="Saida">
+                <ScalarProperty Name="idSaida" ColumnName="idSaida" />
+                <ScalarProperty Name="dataSaida" ColumnName="dataSaida" />
+                <ScalarProperty Name="observacaoSaida" ColumnName="observacaoSaida" />
+                <ScalarProperty Name="idColaborador" ColumnName="idColaborador" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaidaProduto">
+            <EntityTypeMapping TypeName="BDAlmoxarifadoModel.SaidaProduto">
+              <MappingFragment StoreEntitySet="SaidaProduto">
+                <ScalarProperty Name="idSaida" ColumnName="idSaida" />
+                <ScalarProperty Name="idProduto" ColumnName="idProduto" />
+                <ScalarProperty Name="quantidade" ColumnName="quantidade" />
+                <ScalarProperty Name="valorUnitario" ColumnName="valorUnitario" />
+                <ScalarProperty Name="preco" ColumnName="preco" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="BDAlmoxarifadoModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

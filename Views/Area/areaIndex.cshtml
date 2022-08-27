@@ -1,0 +1,22 @@
+﻿@Model Almoxarifado.Models.Area
+@{
+    ViewBag.Title = "Home Page";
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Área</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+         {
+            <tr>
+                <th scope="row">@item.idArea</th>
+                <td>@item.areaDescricao</td>
+            </tr>
+         }
+
+    </tbody>
+</table>
