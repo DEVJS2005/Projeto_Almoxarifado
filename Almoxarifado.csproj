@@ -129,48 +129,49 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AreaController.cs" />
+    <Compile Include="Controllers\ColaboradorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Area.cs">
-      <DependentUpon>conexaoBD.tt</DependentUpon>
+      <DependentUpon>ConexaoBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Colaborador.cs">
-      <DependentUpon>conexaoBD.tt</DependentUpon>
+      <DependentUpon>ConexaoBD.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\conexaoBD.Context.cs">
+    <Compile Include="Models\ConexaoBD.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>conexaoBD.Context.tt</DependentUpon>
+      <DependentUpon>ConexaoBD.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\conexaoBD.cs">
+    <Compile Include="Models\ConexaoBD.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>conexaoBD.tt</DependentUpon>
+      <DependentUpon>ConexaoBD.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\conexaoBD.Designer.cs">
+    <Compile Include="Models\ConexaoBD.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>conexaoBD.edmx</DependentUpon>
+      <DependentUpon>ConexaoBD.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Entrada.cs">
-      <DependentUpon>conexaoBD.tt</DependentUpon>
+      <DependentUpon>ConexaoBD.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\EntradaProduto.cs">
-      <DependentUpon>conexaoBD.tt</DependentUpon>
+    <Compile Include="Models\Entradaproduto.cs">
+      <DependentUpon>ConexaoBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Estoque.cs">
+      <DependentUpon>ConexaoBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Produto.cs">
-      <DependentUpon>conexaoBD.tt</DependentUpon>
+      <DependentUpon>ConexaoBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Saida.cs">
-      <DependentUpon>conexaoBD.tt</DependentUpon>
+      <DependentUpon>ConexaoBD.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SaidaProduto.cs">
-      <DependentUpon>conexaoBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>conexaoBD.tt</DependentUpon>
+    <Compile Include="Models\Saidaproduto.cs">
+      <DependentUpon>ConexaoBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -183,24 +184,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\conexaoBD.Context.tt">
+    <Content Include="Models\ConexaoBD.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>conexaoBD.Context.cs</LastGenOutput>
-      <DependentUpon>conexaoBD.edmx</DependentUpon>
+      <DependentUpon>ConexaoBD.edmx</DependentUpon>
+      <LastGenOutput>ConexaoBD.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\conexaoBD.tt">
+    <Content Include="Models\ConexaoBD.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>conexaoBD.edmx</DependentUpon>
-      <LastGenOutput>conexaoBD.cs</LastGenOutput>
+      <DependentUpon>ConexaoBD.edmx</DependentUpon>
+      <LastGenOutput>ConexaoBD.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\conexaoBD.edmx">
+    <EntityDeploy Include="Models\ConexaoBD.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>conexaoBD.Designer.cs</LastGenOutput>
+      <LastGenOutput>ConexaoBD.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\conexaoBD.edmx.diagram">
-      <DependentUpon>conexaoBD.edmx</DependentUpon>
+    <Content Include="Models\ConexaoBD.edmx.diagram">
+      <DependentUpon>ConexaoBD.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -229,6 +230,13 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Area\areaIndex.cshtml" />
     <Content Include="Views\Area\areaCadastro.cshtml" />
+    <Content Include="Views\Colaborador\colaboradorIndex.cshtml" />
+    <Content Include="Views\Area\areaDetalhe.cshtml" />
+    <Content Include="Views\Area\areaEditar.cshtml" />
+    <Content Include="Views\Colaborador\colaboradorEditar.cshtml" />
+    <Content Include="Views\Colaborador\colaboradorCadastro.cshtml" />
+    <Content Include="Views\Colaborador\colaboradorDetalhe.cshtml" />
+    <Content Include="Views\Colaborador\colaboradorExcluir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

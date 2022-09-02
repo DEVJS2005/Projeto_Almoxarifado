@@ -17,16 +17,16 @@ namespace Almoxarifado.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Saida()
         {
-            this.SaidaProduto = new HashSet<SaidaProduto>();
+            this.Saidaproduto = new HashSet<Saidaproduto>();
         }
     
         public int idSaida { get; set; }
         public System.DateTime dataSaida { get; set; }
-        public string observacaoSaida { get; set; }
+        public string observacao { get; set; }
         public int idColaborador { get; set; }
     
         public virtual Colaborador Colaborador { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SaidaProduto> SaidaProduto { get; set; }
+        public virtual ICollection<Saidaproduto> Saidaproduto { get; set; }
     }
 }

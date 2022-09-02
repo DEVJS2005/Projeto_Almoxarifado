@@ -17,15 +17,15 @@ namespace Almoxarifado.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Entrada()
         {
-            this.EntradaProduto = new HashSet<EntradaProduto>();
+            this.Entradaproduto = new HashSet<Entradaproduto>();
         }
     
         public int idEntrada { get; set; }
         public System.DateTime dataEntrada { get; set; }
-        public string Fornecedor { get; set; }
-        public string Observacao { get; set; }
+        public string fornecedor { get; set; }
+        public string observacao { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EntradaProduto> EntradaProduto { get; set; }
+        public virtual ICollection<Entradaproduto> Entradaproduto { get; set; }
     }
 }

@@ -17,19 +17,22 @@ namespace Almoxarifado.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Produto()
         {
-            this.EntradaProduto = new HashSet<EntradaProduto>();
-            this.SaidaProduto = new HashSet<SaidaProduto>();
+            this.Entradaproduto = new HashSet<Entradaproduto>();
+            this.Estoque = new HashSet<Estoque>();
+            this.Saidaproduto = new HashSet<Saidaproduto>();
         }
     
         public int idProduto { get; set; }
         public string descricaoProduto { get; set; }
-        public int produtoMinimo { get; set; }
-        public int produtoMaximo { get; set; }
+        public int produtoMin { get; set; }
+        public int produtoMax { get; set; }
         public int produtoEstoque { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EntradaProduto> EntradaProduto { get; set; }
+        public virtual ICollection<Entradaproduto> Entradaproduto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SaidaProduto> SaidaProduto { get; set; }
+        public virtual ICollection<Estoque> Estoque { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Saidaproduto> Saidaproduto { get; set; }
     }
 }
