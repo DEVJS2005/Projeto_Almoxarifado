@@ -1,0 +1,32 @@
+﻿@Model Almoxarifado.Models.Area
+@{
+    ViewBag.Title = "Colaboradores";
+}
+<h2> Lista de Colaboradores </h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Área</th>
+        </tr>
+        <tr>
+            <a href="/Colaborador/colaboradorCadastro" class="btn btn-success"> Cadastrar novo colaborador </a>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+         {
+            <tr>
+                <th scope="row">@item.idColaborador</th>
+                <td>@item.nomeColaborador</td>
+                <td>@item.Area.areaDescricao</td>
+
+                <td>
+                    <a href="/Colaborador/colaboradorDetalhe?id=@item.idColaborador" class="btn btn-primary"> Detalhe </a>
+                </td>
+            </tr>
+         }
+
+    </tbody>
+</table>

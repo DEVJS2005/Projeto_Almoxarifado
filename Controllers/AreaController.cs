@@ -9,11 +9,11 @@ namespace Almoxarifado.Controllers
 {
     public class AreaController : Controller
     {
-        BDAlmoxarifadoEntities db = new BDAlmoxarifadoEntities();
+        BDAlmoxarifadoEntities2 db = new BDAlmoxarifadoEntities2();
         // GET: Area
         public ActionResult areaIndex()
         {
-            return View();
+            return View(db.Area.ToList());
         }
         [HttpGet]
         public ActionResult areaCadastro()
@@ -28,7 +28,41 @@ namespace Almoxarifado.Controllers
             area.areaDescricao = areaDescricao;
             db.Area.Add(area);
             db.SaveChanges();
-            return View(db.Area.ToList());
+            return View("areaIndex",db.Area.ToList());
+        }
+
+
+        public ActionResult areaDetalhe(int id)
+        {
+            Area area = db.Area.ToList().Find(x => x.idArea == id );
+            return View(area);
+        }
+
+        [HttpGet]
+        public ActionResult areaEditar(int id)
+        {
+            Area area = db.Area.ToList().Find(x => Equals(x.idArea, id));
+            return View(area);
+        }
+
+        [HttpPost]
+        public ActionResult areaEditar(int idArea,string areaDescricao)
+        {
+            Area area = db.Area.ToList().Find(x => x.idArea == idArea);
+            area.idArea = idArea;
+            area.areaDescricao = areaDescricao;
+            db.SaveChanges();
+
+            return View("areaIndex", db.Area.ToList());
+        }
+
+        [HttpGet]
+        public ActionResult areaExcluir(int id)
+        {
+            Area area = db.Area.ToList().Find(x => x.idArea == id);
+            db.Area.Remove(area);
+            db.SaveChanges();
+            return View("areaIndex", db.Area.ToList());
         }
     }
 }

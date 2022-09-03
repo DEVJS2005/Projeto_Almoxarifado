@@ -12,13 +12,13 @@ namespace Almoxarifado.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SaidaProduto
+    public partial class Saidaproduto
     {
         public int idSaida { get; set; }
         public int idProduto { get; set; }
         public int quantidade { get; set; }
         public decimal valorUnitario { get; set; }
-        public decimal preco { get; set; }
+        public Nullable<decimal> preco { get; set; }
     
         public virtual Produto Produto { get; set; }
         public virtual Saida Saida { get; set; }

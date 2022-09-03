@@ -13,10 +13,10 @@ namespace Almoxarifado.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BDAlmoxarifadoEntities : DbContext
+    public partial class BDAlmoxarifadoEntities2 : DbContext
     {
-        public BDAlmoxarifadoEntities()
-            : base("name=BDAlmoxarifadoEntities")
+        public BDAlmoxarifadoEntities2()
+            : base("name=BDAlmoxarifadoEntities2")
         {
         }
     
@@ -28,10 +28,10 @@ namespace Almoxarifado.Models
         public virtual DbSet<Area> Area { get; set; }
         public virtual DbSet<Colaborador> Colaborador { get; set; }
         public virtual DbSet<Entrada> Entrada { get; set; }
-        public virtual DbSet<EntradaProduto> EntradaProduto { get; set; }
+        public virtual DbSet<Entradaproduto> Entradaproduto { get; set; }
+        public virtual DbSet<Estoque> Estoque { get; set; }
         public virtual DbSet<Produto> Produto { get; set; }
         public virtual DbSet<Saida> Saida { get; set; }
-        public virtual DbSet<SaidaProduto> SaidaProduto { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Saidaproduto> Saidaproduto { get; set; }
     }
 }

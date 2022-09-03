@@ -1,0 +1,32 @@
+﻿@Model Almoxarifado.Models.Colaborador
+@{
+    ViewBag.Title = "Detalhes do Colaborador ";
+}
+<h2> Detalhes do colaborador @Model.nomeColaborador </h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col"> ID </th>
+            <th scope="col"> Nome </th>
+            <th scope="col"> Cargo </th>
+            <th scope="col"> Área </th>
+            <th scope="col"> Id da área </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">@Model.idColaborador</th>
+            <td>@Model.nomeColaborador</td>
+            <td>@Model.cargoColaborador</td>
+            <td>@Model.Area.areaDescricao</td>
+            <td>@Model.idArea</td>
+            <td>
+                <a href="/Colaborador/colaboradorEditar?id=@Model.idColaborador" class="btn btn-primary">Editar</a>
+                <a href="/Colaborador/colaboradorExcluir?id=@Model.idColaborador" class="btn btn-danger">Excluir</a>
+            </td>
+        </tr>
+
+
+    </tbody>
+</table>
+<a href="/Colaborador/colaboradorIndex" class="btn btn-secondary">Voltar</a>

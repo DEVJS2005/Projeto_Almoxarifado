@@ -1,0 +1,28 @@
+﻿@Model Almoxarifado.Models.Area
+@{
+    ViewBag.Title = "Pagina de cadastro";
+}
+<h3>Cadasro de colaboradores</h3>
+<form name="formCadastro" action="/Colaborador/colaboradorCadastro" method="post">
+    <div class="form-group">
+        <label for="exampleInputEmail1"> Nome do Colaborador: </label>
+        <input type="text" name="nomeColaborador" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Informe o nome do colaborador">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1"> Cargo do colaborador </label>
+        <input type="text" name="cargoColaborador" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Informe o cargo do colaborador">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1"> Area do colaborador </label>
+        <select name="idArea">
+            @foreach (var item in Model)
+             {
+                <option value="@item.idArea">
+                    @item.areaDescricao
+                </option>
+             }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary"> Cadastrar </button>
+    <a href="/Colaborador/colaboradorIndex"> Voltar </a>
+</form>
