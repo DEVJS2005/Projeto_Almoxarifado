@@ -75,9 +75,6 @@ namespace Almoxarifado.Controllers
                 col.idArea = ar.idArea;
                 db.SaveChanges();
             }
-            
-
-            
             return View("colaboradorIndex",db.Colaborador.ToList());
         }
     }
