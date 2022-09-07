@@ -30,28 +30,3 @@
     </tbody>
 </table>
 <a href="/Colaborador/colaboradorIndex" class="btn btn-secondary">Voltar</a>
-﻿@Model Almoxarifado.Models.Area
-@{
-    ViewBag.Title = "Cadastro";
-}
-<h2> Lista de Áreas </h2>
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Área</th>
-        </tr>
-    </thead>
-    <tbody>
-            <tr>
-                <th scope="row">@Model.idArea</th>
-                <td>@Model.areaDescricao</td>
-                <td>
-                    <a href="/Area/areaEditar?id=@Model.idArea" class="btn btn-primary">Editar</a>
-                    <a href="/Area/areaExcluir" class="btn btn-danger">Excluir</a>
-                </td>
-            </tr>
-
-
-    </tbody>
-</table>

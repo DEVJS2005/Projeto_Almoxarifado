@@ -1,0 +1,22 @@
+﻿@Model Almoxarifado.Models.Produto
+@{
+    ViewBag.Title = "Editar Produto";
+}
+<h3>Editar dados do produto</h3>
+<form name="formCadastro" action="/Produto/produtoEditar?id=@Model.idProduto" method="post">
+    <div class="form-group">
+        <label for="exampleInputEmail1"> Descrição do produto: </label>
+        <input type="text" name="descricaoProduto" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="@Model.descricaoProduto">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1"> Qauntidade minima do produto: </label>
+        <input type="text" name="produtoMin" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="@Model.produtoMin">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1"> Qauntidade máxima do produto: </label>
+        <input type="text" name="produtoMax" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="@Model.produtoMax">
+    </div>
+    <button type="submit" class="btn btn-warning"> Salvar alterações </button> <br />
+
+</form>
+<a href="/Colaborador/colaboradorIndex" class="btn btn-primary"> Voltar </a>

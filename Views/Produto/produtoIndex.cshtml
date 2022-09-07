@@ -1,0 +1,30 @@
+﻿@Model Almoxarifado.Models.Produto
+@{
+    ViewBag.Title = "Produtos";
+}
+<h2> Lista de Produtos </h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+        </tr>
+        <tr>
+            <a href="/Produto/produtoCadastro" class="btn btn-success"> Cadastrar novo colaborador </a>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+         {
+            <tr>
+                <th scope="row">@item.idProduto</th>
+                <td>@item.descricaoProduto</td>
+
+                <td>
+                    <a href="/Produto/produtoDetalhe?id=@item.idProduto" class="btn btn-primary"> Detalhe </a>
+                </td>
+            </tr>
+         }
+
+    </tbody>
+</table>

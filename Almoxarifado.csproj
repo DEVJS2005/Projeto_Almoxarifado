@@ -131,6 +131,7 @@
     <Compile Include="Controllers\AreaController.cs" />
     <Compile Include="Controllers\ColaboradorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -237,6 +238,11 @@
     <Content Include="Views\Colaborador\colaboradorCadastro.cshtml" />
     <Content Include="Views\Colaborador\colaboradorDetalhe.cshtml" />
     <Content Include="Views\Colaborador\colaboradorExcluir.cshtml" />
+    <Content Include="Views\Colaborador\colAlterarArea.cshtml" />
+    <Content Include="Views\Produto\produtoIndex.cshtml" />
+    <Content Include="Views\Produto\produtoCadastro.cshtml" />
+    <Content Include="Views\Produto\produtoDetalhe.cshtml" />
+    <Content Include="Views\Produto\produtoEditar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,21 @@
+﻿@Model Almoxarifado.Models.Produto
+@{
+    ViewBag.Title = "Pagina de cadastro";
+}
+<h3>Cadastro de Produtos</h3>
+<form name="formCadastro" action="/Produto/produtoCadastro" method="post">
+    <div class="form-group">
+        <label for="exampleInputEmail1"> Descrição do produto: </label>
+        <input type="text" name="descricaoProduto" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Informe o nome do colaborador">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1"> Quant. Máxima </label>
+        <input type="text" name="produtoMax" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Informe o cargo do colaborador">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1"> Quant. Minima </label>
+        <input type="text" name="produtoMin" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Informe o cargo do colaborador">
+    </div>
+    <button type="submit" class="btn btn-primary"> Cadastrar </button>
+    <a href="/Produto/produtoIndex"> Voltar </a>
+</form>

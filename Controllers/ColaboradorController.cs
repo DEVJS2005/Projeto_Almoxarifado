@@ -9,6 +9,7 @@ namespace Almoxarifado.Controllers
 {
     public class ColaboradorController : Controller
     {
+        private static int idColaborador;
         // GET: Colaborador
         BDAlmoxarifadoEntities2 db = new BDAlmoxarifadoEntities2();
         public ActionResult colaboradorIndex()
@@ -53,29 +54,33 @@ namespace Almoxarifado.Controllers
         }
 
         [HttpPost]
-        public ActionResult colaboradorEditar(int id,string nomeColaborador,string cargoColaborador,string areaDescricao,int idArea)
+        public ActionResult colaboradorEditar(int id,string nomeColaborador,string cargoColaborador,int idArea)
         {
             Colaborador col = db.Colaborador.ToList().Find(x => Equals(x.idColaborador, id));
-            if(col.Area.areaDescricao == areaDescricao)
-            {
-                col.idColaborador = id;
-                col.nomeColaborador = nomeColaborador;
-                col.cargoColaborador = cargoColaborador;
-                col.Area.areaDescricao = areaDescricao;
-                col.idArea = idArea;
-                db.SaveChanges();
-            }
-            else
-            {
-                col.idColaborador = id;
-                col.nomeColaborador = nomeColaborador;
-                col.cargoColaborador = cargoColaborador;
-                Area ar = db.Area.ToList().Find(x => Equals(x.areaDescricao, areaDescricao));
-                col.Area.areaDescricao = ar.areaDescricao;
-                col.idArea = ar.idArea;
-                db.SaveChanges();
-            }
+            Area ar = db.Area.ToList().Find(x => x.idArea == idArea);
+            col.idColaborador = id;
+            col.nomeColaborador = nomeColaborador;
+            col.cargoColaborador = cargoColaborador;
+            col.Area.areaDescricao = ar.areaDescricao;
+            col.idArea = idArea;
+            db.SaveChanges();
             return View("colaboradorIndex",db.Colaborador.ToList());
+        }
+
+        public ActionResult colAlterarArea(int idCol)
+        {
+            idColaborador = idCol;
+            return View(db.Area.ToList());
+        }
+
+        [HttpPost]
+        public ActionResult alterarArea(int idArea)
+        {
+            Colaborador col = db.Colaborador.ToList().Find(x => x.idColaborador == idColaborador);
+            col.idArea = idArea;
+            db.SaveChanges();
+
+            return RedirectToAction("colaboradorIndex", "Colaborador");
         }
     }
 }

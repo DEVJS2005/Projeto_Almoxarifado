@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b50d70b024a047619c2aed9e598a6cdb" Name="Diagram1">
-        <EntityTypeShape EntityType="BDAlmoxarifadoModel.Area" Width="1.5" PointX="1.5" PointY="15" IsExpanded="true" />
-        <EntityTypeShape EntityType="BDAlmoxarifadoModel.Colaborador" Width="1.5" PointX="1.5" PointY="11.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BDAlmoxarifadoModel.Entrada" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BDAlmoxarifadoModel.Entradaproduto" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BDAlmoxarifadoModel.Estoque" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+      <Diagram DiagramId="b50d70b024a047619c2aed9e598a6cdb" Name="Diagram1" ZoomLevel="79">
+        <EntityTypeShape EntityType="BDAlmoxarifadoModel.Area" Width="1.5" PointX="5.125" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDAlmoxarifadoModel.Colaborador" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDAlmoxarifadoModel.Entrada" Width="1.5" PointX="6.875" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDAlmoxarifadoModel.Entradaproduto" Width="1.5" PointX="3.375" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDAlmoxarifadoModel.Estoque" Width="1.5" PointX="0.5" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BDAlmoxarifadoModel.Produto" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BDAlmoxarifadoModel.Saida" Width="1.5" PointX="3.75" PointY="11.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BDAlmoxarifadoModel.Saidaproduto" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDAlmoxarifadoModel.Saida" Width="1.5" PointX="6.375" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDAlmoxarifadoModel.Saidaproduto" Width="1.5" PointX="8.875" PointY="5" IsExpanded="true" />
         <AssociationConnector Association="BDAlmoxarifadoModel.FK_Colaborador_Area" ManuallyRouted="false" />
         <AssociationConnector Association="BDAlmoxarifadoModel.FK_Saida_Colaborador" ManuallyRouted="false" />
         <AssociationConnector Association="BDAlmoxarifadoModel.FK_Entradaproduto_Entrada" ManuallyRouted="false" />

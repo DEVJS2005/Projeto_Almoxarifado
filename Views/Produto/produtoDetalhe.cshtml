@@ -1,0 +1,31 @@
+﻿@Model Almoxarifado.Models.Produto
+@{
+    ViewBag.Title = " Detalhes do Colaborador ";
+}
+<h2> Detalhes do produto @Model.descricaoProduto </h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col"> ID </th>
+            <th scope="col"> Descição </th>
+            <th scope="col"> Quantidade Minima </th>
+            <th scope="col"> Quantidade Máxima </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">@Model.idProduto</th>
+            <td>@Model.descricaoProduto</td>
+            <td>@Model.produtoMin</td>
+            <td>@Model.produtoMax</td>
+            <td>
+                <a href="/Produto/produtoEditar?id=@Model.idProduto" class="btn btn-primary"> Editar </a>
+                <a href="/Produto/produtoExcluir?id=@Model.idProduto" class="btn btn-danger"> Excluir </a>
+                <a href="/Produto/produtoEstoque?id=@Model.idProduto" class="btn btn-success"> Verificar no estoque </a>
+            </td>
+        </tr>
+
+
+    </tbody>
+</table>
+<a href="/Colaborador/colaboradorIndex" class="btn btn-secondary">Voltar</a>

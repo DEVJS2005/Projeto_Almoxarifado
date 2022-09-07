@@ -1,0 +1,19 @@
+﻿@Model Almoxarifado.Models.Area
+@{
+    ViewBag.Title = "Editar area do Colaborador ";
+}
+<h2>Editar a área do colaborado </h2>
+<form name=" formAlterar" action="/Colaborador/alterarArea" method="post">
+    <label for="exampleInputEmail1"> Area do colaborador </label>
+    <select name="idArea">
+        @foreach (var item in Model)
+        {
+            <option value=@item.idArea>
+                @item.areaDescricao
+            </option>
+        }
+    </select>
+    <button type="submit" class="btn btn-warning"> Salvar alterações </button>
+    <a href="/Colaborador/colaboradorIndex" class="btn btn-primary"> Voltar </a>
+</form>
+
